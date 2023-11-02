@@ -1,77 +1,57 @@
 <template>
-  <div class="hello">
-    <div class="content">
-      <div class="box" ref="box">
-        <video class="video" src="../assets/video1.mp4"></video>
-        <video ref="video" class="video" src="../assets/video1.mp4"></video>
-        <video class="video" src="../assets/video1.mp4"></video>
-      </div>
-    </div>
-
-    <div>
-      <button class="btn" @click="start">播放视频</button>
-      <button class="btn" @click="stop">停止视频</button>
-      <button class="btn" @click="nextVideo">下一个视频</button>
-    </div>
+  <div>
+    <el-container>
+      <el-header height="100px">
+        <h1>欢迎来到七牛云-音视频大赛</h1>
+      </el-header>
+      <el-container>
+        <el-aside width="100px">
+          <MySlider />
+        </el-aside>
+        <el-main>
+          <MyContent />
+        </el-main>
+      </el-container>
+    </el-container>
   </div>
 </template>
 
 <script>
+import MyContent from './MyContent.vue';
+import MySlider from './MySlider.vue';
 export default {
   name: 'HelloWorld',
+  components: {
+    MyContent,
+    MySlider
+  },
   data() {
-    return {
-
-    }
+    return {};
   },
-  props: {
-    msg: String
-  },
-  methods: {
-    start() {
-      let video = this.$refs.video
-      // console.log(video.currentTime, video.duration)
-      video.currentTime = 2.0
-      video.play()
-    },
-    stop() {
-      this.$refs.video.pause()
-    },
-    nextVideo() {
-      let box = this.$refs.box
-      let t = box.style.top.replace('px')
-      t -= 10
-      box.style.top = t + 'px'
-      console.log(box.style.top, 111)
-
-    }
-  }
 }
 </script>
 
 <style scoped>
-.content {
-  height: 300px;
-  width: 300px;
+.el-container {
+  height: 100vh;
+  width: 100vw;
   overflow: hidden;
+}
+
+.el-header {
+  color: white;
+  font-size: 25px;
+  text-align: center;
+  line-height: 100px;
+  background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+}
+
+.el-main {
   position: relative;
+  overflow: hidden;
 }
 
-.box {
-  position: absolute;
-  top: 0px;
-  left: 0;
-}
-
-.video {
-  height: 300px;
-  width: 300px;
-}
-
-.btn {
-  width: 50px;
-  height: 50px;
-  border: 1px solid black;
-  margin-left: 30px;
+.el-aside {
+  border-right: 1px solid rgb(67, 65, 65);
 }
 </style>
