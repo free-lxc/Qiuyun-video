@@ -19,6 +19,7 @@
 <script>
 import MyContent from './MyContent.vue';
 import MySlider from './MySlider.vue';
+import axios from 'axios'
 export default {
   name: 'HelloWorld',
   components: {
@@ -28,6 +29,11 @@ export default {
   data() {
     return {};
   },
+  mounted() {
+    axios.get('/index').then(res => {
+      console.log(res)
+    })
+  }
 }
 </script>
 
